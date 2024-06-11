@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>{{ question.question }}</h2>
+    <form method="POST" action="/answer">
+        {% for choice in question.choices %}
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="answer" id="{{ choice }}" value="{{ choice }}">
+                <label class="form-check-label" for="{{ choice }}">
+                    {{ choice }}
+                </label>
+            </div>
+        {% endfor %}
+        {% if question.allow_text %}
+            <div class="form-group">
+                <label for="text-answer">Your answer:</label>
+                <input type="text" class="form-control" id="text-answer" name="text-answer">
+            </div>
+        {% endif %}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+{% endblock %}
